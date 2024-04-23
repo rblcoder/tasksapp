@@ -74,9 +74,14 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # Allow requests from our preview domain.
-  pf_host = "#{ENV['CODESPACE_NAME']}-3000.#{pf_domain}"
-  config.hosts << pf_host
-  config.hosts << "localhost:3000"
+  # pf_host = "#{ENV['CODESPACE_NAME']}-3000.#{pf_domain}"
 
-  config.action_cable.allowed_request_origins = ["https://#{pf_host}", "http://localhost:3000"]
+  # config.hosts << /.*/
+  # config.hosts << pf_host
+  # config.hosts << "localhost:3000"
+  # config.hosts << "cautious-yodel-pgp777x9746h9rq4-3000.app.github.dev"
+  config.hosts.clear
+  
+  config.action_cable.allowed_request_origins = [/http:\/\/*/, /https:\/\/*/]
+  
 end
